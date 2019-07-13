@@ -147,4 +147,18 @@ DEBUG = gdb
 EXTRALIBDIRS = $(RULESPATH)/ld
 
 dfu-util: $(BUILD_DIR)/$(TARGET).bin sizeafter
-	dfu-util -D $(BUILD_DIR)/$(TARGET).bin
+	while true ;\
+	do \
+		dfu_out="$$(dfu-util --list --device ,$(DFU_UTIL_DEVICE) 2>&1 | tail -1)" ;\
+		case $$dfu_out in \
+		"Found DFU"*) \
+			exit 0;; \
+		"dfu-util: Cannot open DFU device"*) \
+			printf "$(ERROR_COLOR)dfu-util: Device present, but we do not have permission to access it.$(NO_COLOR)\n" ;\
+			exit 1;; \
+		*) \
+			printf "$(WARN_COLOR)dfu-util: Device not found. Trying again in 5s.$(NO_COLOR)\n" ;\
+			sleep 5;; \
+		esac ;\
+	done
+	dfu-util --device ,$(DFU_UTIL_DEVICE) --download $(BUILD_DIR)/$(TARGET).bin

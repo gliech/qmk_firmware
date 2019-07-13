@@ -66,3 +66,10 @@ COMMAND_ENABLE ?= yes    # Commands for debug and configuration
 #SLEEP_LED_ENABLE ?= yes  # Breathing sleep LED during USB suspend
 NKRO_ENABLE ?= yes	    # USB Nkey Rollover
 CUSTOM_MATRIX ?= yes # Custom matrix file
+
+# Here you can specify the DFU mode vendor and/or product IDs of your
+# board for the dfu-util firmware flasher (command located in
+# tmk_core/chibios.mk) in case dfu-util recognizes another DFU
+# capable device connected to your computer. You can find your IDs by
+# running 'dfu-util --list' while your keyboard is in dfu flash mode.
+DFU_UTIL_DEVICE = 1c11:b007
