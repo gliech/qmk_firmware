@@ -10,3 +10,9 @@
 [submodule "lib/googletest"]
 	path = lib/googletest
 	url = https://github.com/google/googletest
+[submodule "qmk_extra_functions"]
+	path = gff
+	url = git@github.com:gliech/qmk_extra_functions
+[submodule "whitefox_keymap"]
+	path = keyboards/whitefox/keymaps/gliech
+	url = git@github.com:gliech/qmk_whitefox_keymap

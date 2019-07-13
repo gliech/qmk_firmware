@@ -6,6 +6,7 @@ endif
 
 include common.mk
 
+
 ifneq ($(SUBPROJECT),)
 	TARGET ?= $(KEYBOARD)_$(SUBPROJECT)_$(KEYMAP)
 	KEYBOARD_OUTPUT := $(BUILD_DIR)/obj_$(KEYBOARD)_$(SUBPROJECT)
@@ -229,6 +230,12 @@ ifeq ($(strip $(VISUALIZER_ENABLE)), yes)
 	VISUALIZER_DIR = $(QUANTUM_DIR)/visualizer
 	VISUALIZER_PATH = $(QUANTUM_PATH)/visualizer
 	include $(VISUALIZER_PATH)/visualizer.mk
+endif
+
+ifeq ($(strip $(USE_GLIECHS_FUNKY_FUNCS)), yes)
+	GFF_DIR = gff
+	GFF_PATH = $(TOP_DIR)/$(GFF_DIR)
+	include $(GFF_PATH)/gliechs_funky_funcs.mk
 endif
 
 OUTPUTS := $(KEYMAP_OUTPUT) $(KEYBOARD_OUTPUT)
